@@ -1,0 +1,7 @@
+name: jwt
+author: George Moschovitis
+description: JSON Web Token.
+dependencies:
+  crypto: any
+dev_dependencies:
+  unittest: any
