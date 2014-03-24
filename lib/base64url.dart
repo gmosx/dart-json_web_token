@@ -1,6 +1,7 @@
 /**
  * Base64Url conversions.
  *
+ * [Base 64 Encoding with URL and Filename Safe Alphabet](http://tools.ietf.org/html/rfc4648#page-7)
  * [Inspiration](https://github.com/brianloveswords/base64url/blob/master/index.js)
  */
 library base64url;
@@ -16,7 +17,7 @@ final _MINUS_RE = new RegExp(r'\-');
 final _US_RE = new RegExp(r'_');
 
 /**
- * Convert a Base64 string to a Base64Url string.
+ * Convert a list of bytes to a base64url string.
  */
 class Base64UrlEncoder extends Converter {
   const Base64UrlEncoder();
@@ -26,6 +27,9 @@ class Base64UrlEncoder extends Converter {
     return convertFromBase64String(CryptoUtils.bytesToBase64(input));
   }
 
+  /**
+   * Convert a base64 string to a base64url string.
+   */
   String convertFromBase64String(String input) {
     return input
         .replaceAll(_EQ_RE, '') // remove the trailing padding.
@@ -35,7 +39,7 @@ class Base64UrlEncoder extends Converter {
 }
 
 /**
- * Convert a Base64Url sring to a Base64 string.
+ * Convert a base64url sring to a list of bytes.
  */
 class Base64UrlDecoder extends Converter {
   static const _SEGMENT_LENGTH = 4;
@@ -47,6 +51,9 @@ class Base64UrlDecoder extends Converter {
     return CryptoUtils.base64StringToBytes(convertToBase64String(input));
   }
 
+  /**
+   * Convert a base64url sring to a base64 string.
+   */
   String convertToBase64String(String input) {
     return _padString(input)
         .replaceAll(_MINUS_RE, '+')
@@ -73,7 +80,7 @@ class Base64UrlDecoder extends Converter {
 }
 
 /**
- * A converter between Base64 and Base64Url encodings.
+ * A base64url codec.
  */
 class Base64UrlCodec extends Codec {
   const Base64UrlCodec();
