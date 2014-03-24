@@ -17,9 +17,9 @@ String sign(payload, String secret) {
   return jws.sign(header, payload, secret);
 }
 
-/**
- *
- */
-Object verify(String token) {
-  return jws.verify(token);
-}
+///**
+// *
+// */
+//Map verify(String token, String secret) {
+//  return jws.verify(token, secret);
+//}
