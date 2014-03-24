@@ -92,4 +92,4 @@ class Base64UrlCodec extends Codec {
   Converter get decoder => const Base64UrlDecoder();
 }
 
-const Base64Url = const Base64UrlCodec();
+const BASE64URL = const Base64UrlCodec();

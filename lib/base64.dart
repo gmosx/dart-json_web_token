@@ -31,9 +31,13 @@ class Base64Decoder extends Converter {
  *
  */
 class Base64Codec extends Codec {
+  const Base64Codec();
+
   @override
   Converter get encoder => const Base64Encoder();
 
   @override
   Converter get decoder => const Base64Decoder();
 }
+
+const BASE64 = const Base64Codec();
