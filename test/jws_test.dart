@@ -9,6 +9,7 @@ void main() {
         'typ': 'JWT',
         'alg': 'HS256'
       };
+
       final payload = {
         'iss': 'joe',
         'exp': 1300819380,
@@ -16,10 +17,6 @@ void main() {
       };
 
       print(jws.sign(header, payload, "GawgguFyGrWKav7AX4VKUg"));
-
-//      expect(BASE64URL.encoder.convertFromBase64String("Adsd=+-//as"), equals("Adsd--__as"));
-//      expect(BASE64URL.encode(b64a), equals("SGVsbG8gdGhlcmUsIGl0IHdvcmtz"));
-//      expect(BASE64URL.encode(b64b), equals("TGV0J3MgdHJ5IHRvIGdldCBhIHBhZA"));
     });
   });
 }

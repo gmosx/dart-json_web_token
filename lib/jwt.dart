@@ -20,5 +20,6 @@ String sign(payload, String secret) {
 /**
  *
  */
-void verify(String token) {
+Object verify(String token) {
+  return jws.verify(token);
 }

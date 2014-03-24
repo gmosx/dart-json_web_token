@@ -31,3 +31,10 @@ String sign(Map<String, Object> header, payload, secret) {
   final signature = hmac.close();
   return "${msg}.${BASE64URL.encode(signature)}";
 }
+
+/**
+ *
+ */
+Object verify(String token) {
+  return null;
+}
