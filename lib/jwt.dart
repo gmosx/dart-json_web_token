@@ -6,19 +6,19 @@ library json_web_token;
 import 'jws.dart' as jws;
 
 /**
- * 
+ *
  */
 String sign(payload, String secret) {
   final header = {
     'typ': 'JWT',
     'alg': 'HS256'
   };
-  
+
   return jws.sign(header, payload, secret);
 }
 
 /**
- * 
+ *
  */
 void verify(String token) {
 }
