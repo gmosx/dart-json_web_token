@@ -19,7 +19,7 @@ import 'package:jwt/json_web_token.dart';
 
 // Encode (i.e. sign) a payload into a JWT token.
 
-final jwt = new JwtCodec(secret: "My secret key");
+final jwt = new JsonWebTokenCodec(secret: "My secret key");
 final payload = {
   'iss': 'joe',
   'exp': 1300819380,
