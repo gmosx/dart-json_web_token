@@ -50,6 +50,7 @@ Links
 -----
 
 * [JSON Web Token](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)
+* [JSON Web Algorithms](https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-24)
 * [Using OAuth 2.0 for Server to Server Applications](https://developers.google.com/accounts/docs/OAuth2ServiceAccount)
 
 
