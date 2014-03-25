@@ -15,25 +15,25 @@ The JWT spec is implemented as a standard Dart Codec.
 Example usage
 -------------
 
-import 'package:jwt/json_web_token.dart';
-
-// Encode (i.e. sign) a payload into a JWT token.
-
-final jwt = new JsonWebTokenCodec(secret: "My secret key");
-final payload = {
-  'iss': 'joe',
-  'exp': 1300819380,
-  'http://example.com/is_root': true
-};
-final token = jwt.encode(payload);
-
-// Validate a token.
-
-jwt.isValid(token);
-
-// Decode (i.e. extract) the payload from a JWT token.
-
-final payload = jwt.decode(token);
+  import 'package:jwt/json_web_token.dart';
+  
+  // Encode (i.e. sign) a payload into a JWT token.
+  
+  final jwt = new JsonWebTokenCodec(secret: "My secret key");
+  final payload = {
+    'iss': 'joe',
+    'exp': 1300819380,
+    'http://example.com/is_root': true
+  };
+  final token = jwt.encode(payload);
+  
+  // Validate a token.
+  
+  jwt.isValid(token);
+  
+  // Decode (i.e. extract) the payload from a JWT token.
+  
+  final payload = jwt.decode(token);
 
 
 Status
