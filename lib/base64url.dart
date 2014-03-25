@@ -6,15 +6,18 @@
  */
 library base64url;
 
+
 import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
+
 
 final _EQ_RE = new RegExp(r'=');
 final _PLUS_RE = new RegExp(r'\+');
 final _SLASH_RE = new RegExp(r'\/');
 final _MINUS_RE = new RegExp(r'\-');
 final _US_RE = new RegExp(r'_');
+
 
 /**
  * Convert a list of bytes to a base64url string.
@@ -31,12 +34,11 @@ class Base64UrlEncoder extends Converter {
    * Convert a base64 string to a base64url string.
    */
   String convertFromBase64String(String input) {
-    return input
-        .replaceAll(_EQ_RE, '') // remove the trailing padding.
-        .replaceAll(_PLUS_RE, '-')
-        .replaceAll(_SLASH_RE, '_');
+    return input.replaceAll(_EQ_RE, '') // remove the trailing padding.
+    .replaceAll(_PLUS_RE, '-').replaceAll(_SLASH_RE, '_');
   }
 }
+
 
 /**
  * Convert a base64url sring to a list of bytes.
@@ -55,9 +57,7 @@ class Base64UrlDecoder extends Converter {
    * Convert a base64url sring to a base64 string.
    */
   String convertToBase64String(String input) {
-    return _padString(input)
-        .replaceAll(_MINUS_RE, '+')
-        .replaceAll(_US_RE, '/');
+    return _padString(input).replaceAll(_MINUS_RE, '+').replaceAll(_US_RE, '/');
   }
 
   String _padString(String input) {
@@ -79,6 +79,7 @@ class Base64UrlDecoder extends Converter {
   }
 }
 
+
 /**
  * A base64url codec.
  */
@@ -91,5 +92,6 @@ class Base64UrlCodec extends Codec {
   @override
   Converter get decoder => const Base64UrlDecoder();
 }
+
 
 const BASE64URL = const Base64UrlCodec();

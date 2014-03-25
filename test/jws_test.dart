@@ -1,6 +1,8 @@
+import 'dart:convert';
+
 import 'package:unittest/unittest.dart';
 
-import 'package:jwt/jws.dart' as jws;
+import 'package:jwt/json_web_signature.dart';
 
 void main() {
   group("The JWS spec", () {
@@ -18,11 +20,14 @@ void main() {
 
       final secret = "GawgguFyGrWKav7AX4VKUg";
 
-      final token = jws.sign(header, payload, secret);
+      final jws = new JwsCodec(header: header, secret: secret);
+      final token = jws.encode(JSON.encode(payload).codeUnits);
+      final parts = token.split('.');
 
-      print(token);
-      print(jws.verify(token, secret));
-      print(jws.decode(token));
+      expect(parts[0], equals('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9'));
+      expect(parts[1], equals('eyJpc3MiOiJqb2UiLCJleHAiOjEzMDA4MTkzODAsImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ'));
+      expect(jws.isValid(token), isTrue);
+      expect(JSON.decode(new String.fromCharCodes(jws.decode(token))), equals(payload));
     });
   });
 }

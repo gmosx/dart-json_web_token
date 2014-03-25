@@ -3,7 +3,9 @@
  */
 library json_web_token;
 
-import 'jws.dart' as jws;
+import 'json_web_signature.dart' as jws;
+
+// TODO: implement dart:convert api.
 
 /**
  *
@@ -14,7 +16,7 @@ String sign(payload, String secret) {
     'alg': 'HS256'
   };
 
-  return jws.sign(header, payload, secret);
+//  return jws.sign(header, payload, secret);
 }
 
 ///**
