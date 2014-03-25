@@ -14,8 +14,8 @@ import 'base64url.dart' show BASE64URL;
 /**
  * JSON Web Signature encoder.
  */
-class JwsEncoder extends Converter {
-  const JwsEncoder();
+class JsonWebSignatureEncoder extends Converter {
+  const JsonWebSignatureEncoder();
   @override
   String convert(List<int> payload, {Map header, String secret}) {
     print(JSON.encode(header));
@@ -28,8 +28,8 @@ class JwsEncoder extends Converter {
 /**
  * JSON Web Signature decoder.
  */
-class JwsDecoder extends Converter {
-  const JwsDecoder();
+class JsonWebSignatureDecoder extends Converter {
+  const JsonWebSignatureDecoder();
 
   bool isValid(String input, String secret) {
     final parts = input.split('.'),
@@ -63,19 +63,19 @@ class JwsDecoder extends Converter {
 /**
  * JSON Web Signature codec.
  */
-class JwsCodec extends Codec {
+class JsonWebSignatureCodec extends Codec {
   final Map _header;
   final String _secret;
 
-  const JwsCodec({Map header, String secret}) :
+  const JsonWebSignatureCodec({Map header, String secret}) :
       _header = header,
       _secret = secret;
 
   @override
-  JwsEncoder get encoder => const JwsEncoder();
+  JsonWebSignatureEncoder get encoder => const JsonWebSignatureEncoder();
 
   @override
-  JwsDecoder get decoder => const JwsDecoder();
+  JsonWebSignatureDecoder get decoder => const JsonWebSignatureDecoder();
 
   @override
   String encode(List<int> payload, {Map header, String secret}) {

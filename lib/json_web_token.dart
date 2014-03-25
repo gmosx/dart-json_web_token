@@ -12,10 +12,10 @@ import 'json_web_signature.dart';
 /**
  * JSON Web Signature encoder.
  */
-class JwtEncoder extends Converter {
-  static const _JWS_ENCODER = const JwsEncoder();
+class JsonWebTokenEncoder extends Converter {
+  static const _JWS_ENCODER = const JsonWebSignatureEncoder();
 
-  const JwtEncoder();
+  const JsonWebTokenEncoder();
   @override
   String convert(Map payload, {Map header, String secret}) {
     return _JWS_ENCODER.convert(JSON.encode(payload).codeUnits, header: header, secret: secret);
@@ -26,10 +26,10 @@ class JwtEncoder extends Converter {
 /**
  * JSON Web Signature decoder.
  */
-class JwtDecoder extends Converter {
-  static const _JWS_DECODER = const JwsDecoder();
+class JsonWebTokenDecoder extends Converter {
+  static const _JWS_DECODER = const JsonWebSignatureDecoder();
 
-  const JwtDecoder();
+  const JsonWebTokenDecoder();
 
   bool isValid(String input, String secret) => _JWS_DECODER.isValid(input, secret);
 
@@ -43,24 +43,24 @@ class JwtDecoder extends Converter {
 /**
  * JSON Web Token codec.
  */
-class JwtCodec extends Codec {
+class JsonWebTokenCodec extends Codec {
   static const _DEFAULT_HEADER = const {
-    'typ': 'JWT',
+    'typ': 'JsonWebToken',
     'alg': 'HS256'
   };
 
   final Map _header;
   final String _secret;
 
-  const JwtCodec({Map header, String secret}) :
+  const JsonWebTokenCodec({Map header, String secret}) :
       _header = header != null ? header : _DEFAULT_HEADER,
       _secret = secret;
 
   @override
-  JwtEncoder get encoder => const JwtEncoder();
+  JsonWebTokenEncoder get encoder => const JsonWebTokenEncoder();
 
   @override
-  JwtDecoder get decoder => const JwtDecoder();
+  JsonWebTokenDecoder get decoder => const JsonWebTokenDecoder();
 
   @override
   String encode(Map payload, {Map header, String secret}) {

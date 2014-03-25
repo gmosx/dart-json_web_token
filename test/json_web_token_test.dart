@@ -14,7 +14,7 @@ void main() {
 
       final secret = "GawgguFyGrWKav7AX4VKUg";
 
-      final jwt = new JwtCodec(secret: secret);
+      final jwt = new JsonWebTokenCodec(secret: secret);
       final token = jwt.encode(payload);
       final parts = token.split('.');
 

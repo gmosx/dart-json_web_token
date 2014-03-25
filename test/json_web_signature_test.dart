@@ -21,7 +21,7 @@ void main() {
 
       final secret = "GawgguFyGrWKav7AX4VKUg";
 
-      final jws = new JwsCodec(header: header, secret: secret);
+      final jws = new JsonWebSignatureCodec(header: header, secret: secret);
       final token = jws.encode(JSON.encode(payload).codeUnits);
       final parts = token.split('.');
 
