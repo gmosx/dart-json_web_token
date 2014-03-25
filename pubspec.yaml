@@ -1,4 +1,5 @@
-name: jwt
+name: json_web_token
+version: 0.0.1
 author: George Moschovitis
 description: JSON Web Token.
 dependencies:

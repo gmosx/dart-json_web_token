@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:unittest/unittest.dart';
 
-import 'package:jwt/json_web_signature.dart';
+import 'package:json_web_token/json_web_signature.dart';
 
 
 void main() {

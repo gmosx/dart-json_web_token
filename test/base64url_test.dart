@@ -1,6 +1,6 @@
 import 'package:unittest/unittest.dart';
 
-import 'package:jwt/base64url.dart';
+import 'package:json_web_token/base64url.dart';
 
 void main() {
   group("The BASE64URL codec", () {
