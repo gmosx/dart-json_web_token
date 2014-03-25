@@ -1,7 +1,7 @@
-name: json_web_token
-version: 0.0.1
+name: jwt
+version: 0.0.2
 author: George Moschovitis <george.moschovitis@gmail.com>
-description: JSON Web Token.
+description: JSON Web Token implemented as a standard Dart codec.
 homepage: https://github.com/gmosx/dart-json_web_token
 dependencies:
   crypto: any

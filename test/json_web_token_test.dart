@@ -1,6 +1,6 @@
 import 'package:unittest/unittest.dart';
 
-import 'package:json_web_token/json_web_token.dart';
+import 'package:jwt/json_web_token.dart';
 
 
 void main() {

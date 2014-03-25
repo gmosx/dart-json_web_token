@@ -44,6 +44,13 @@ make the API as 'dartish' as possible while maintaining simplicity. We are
 open to any suggestions towards that goal.
 
 
+Links
+-----
+
+* [JSON Web Token](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)
+* [Using OAuth 2.0 for Server to Server Applications](https://developers.google.com/accounts/docs/OAuth2ServiceAccount)
+
+
 Credits
 -------
 
