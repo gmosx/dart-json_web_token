@@ -8,18 +8,20 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 
-import 'base64url.dart' show BASE64URL;
+// import 'base64url.dart' show BASE64URL;
 
 
 /**
  * JSON Web Signature encoder.
  */
-class JsonWebSignatureEncoder extends Converter {
+class JsonWebSignatureEncoder extends Converter<List<int>,String> {
   const JsonWebSignatureEncoder();
   @override
   String convert(List<int> payload, {Map header, String secret}) {
-    print(JSON.encode(header));
-    final msg = '${BASE64URL.encode(JSON.encode(header).codeUnits)}.${BASE64URL.encode(payload)}';
+    // print(JSON.encode(header));
+    print(json.encode(header));
+    // final msg = '${BASE64URL.encode(JSON.encode(header).codeUnits)}.${BASE64URL.encode(payload)}';
+    final msg = '${base64Url.encode(json.encode(header).codeUnits)}.${base64Url.encode(payload)}';
     return "${msg}.${_signMessage(msg, secret)}";
   }
 }
@@ -28,7 +30,7 @@ class JsonWebSignatureEncoder extends Converter {
 /**
  * JSON Web Signature decoder.
  */
-class JsonWebSignatureDecoder extends Converter {
+class JsonWebSignatureDecoder extends Converter<String,List<int>>{
   const JsonWebSignatureDecoder();
 
   bool isValid(String input, String secret) {
@@ -52,7 +54,7 @@ class JsonWebSignatureDecoder extends Converter {
           signature = parts[2];
 
     if (_verifyParts(header, payload, signature, secret)) {
-      return BASE64URL.decode(payload);
+      return base64Url.decode(payload);
     } else {
       throw new ArgumentError("Invalid signature");
     }
@@ -63,7 +65,7 @@ class JsonWebSignatureDecoder extends Converter {
 /**
  * JSON Web Signature codec.
  */
-class JsonWebSignatureCodec extends Codec {
+class JsonWebSignatureCodec extends Codec<List<int>,String> {
   final Map _header;
   final String _secret;
 
@@ -95,8 +97,10 @@ class JsonWebSignatureCodec extends Codec {
 
 
 String _signMessage(String msg, String secret) {
-  final hmac = new HMAC(new SHA256(), secret.codeUnits);
-  hmac.add(msg.codeUnits);
-  final signature = hmac.close();
-  return BASE64URL.encode(signature);
+  Hmac hmac = Hmac( sha256 , secret.codeUnits);
+  // hmac.add(msg.codeUnits);
+  Digest digest = hmac.convert(msg.codeUnits);
+  // final signature = hmac.close();
+  // return BASE64URL.encode(signature);
+  return base64Url.encode(digest.bytes);
 }

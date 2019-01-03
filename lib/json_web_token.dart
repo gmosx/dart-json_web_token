@@ -12,13 +12,14 @@ import 'json_web_signature.dart';
 /**
  * JSON Web Signature encoder.
  */
-class JsonWebTokenEncoder extends Converter {
+class JsonWebTokenEncoder extends Converter<Map,String> {
   static const _JWS_ENCODER = const JsonWebSignatureEncoder();
 
   const JsonWebTokenEncoder();
   @override
   String convert(Map payload, {Map header, String secret}) {
-    return _JWS_ENCODER.convert(JSON.encode(payload).codeUnits, header: header, secret: secret);
+    // return _JWS_ENCODER.convert(JSON.encode(payload).codeUnits, header: header, secret: secret);
+    return _JWS_ENCODER.convert(json.encode(payload).codeUnits, header: header, secret: secret);
   }
 }
 
@@ -26,7 +27,7 @@ class JsonWebTokenEncoder extends Converter {
 /**
  * JSON Web Signature decoder.
  */
-class JsonWebTokenDecoder extends Converter {
+class JsonWebTokenDecoder extends Converter<String,Map> {
   static const _JWS_DECODER = const JsonWebSignatureDecoder();
 
   const JsonWebTokenDecoder();
@@ -35,7 +36,8 @@ class JsonWebTokenDecoder extends Converter {
 
   @override
   Map convert(String token, {Map header, String secret}) {
-    return JSON.decode(new String.fromCharCodes(_JWS_DECODER.convert(token, secret: secret)));
+    // return JSON.decode(new String.fromCharCodes(_JWS_DECODER.convert(token, secret: secret)));
+    return json.decode(new String.fromCharCodes(_JWS_DECODER.convert(token, secret: secret)));
   }
 }
 
@@ -43,7 +45,7 @@ class JsonWebTokenDecoder extends Converter {
 /**
  * JSON Web Token codec.
  */
-class JsonWebTokenCodec extends Codec {
+class JsonWebTokenCodec extends Codec<Map,String> {
   static const _DEFAULT_HEADER = const {
     'typ': 'JsonWebToken',
     'alg': 'HS256'
