@@ -6,4 +6,4 @@ homepage: https://github.com/gmosx/dart-json_web_token
 dependencies:
   crypto: any
 dev_dependencies:
-  unittest: any
+  test: ^1.0.0
