@@ -47,7 +47,7 @@ class JsonWebTokenDecoder extends Converter<String,Map> {
  */
 class JsonWebTokenCodec extends Codec<Map,String> {
   static const _DEFAULT_HEADER = const {
-    'typ': 'JsonWebToken',
+    'typ': 'JWT',
     'alg': 'HS256'
   };
 
